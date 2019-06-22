@@ -1,0 +1,18 @@
+---
+- name: Create a network virtual
+  docker_network:
+    name: virtual
+
+- name: Add containers to network virtual
+  docker_network:
+    name: virtual
+    connected:
+      - app01
+      - app02
+      - nginx-proxy
+    appends: yes
+
+- name: Start container NGINX-PROXY
+  docker_container:
+    name: nginx-proxy
+    state: started

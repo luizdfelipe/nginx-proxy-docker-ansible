@@ -1,0 +1,28 @@
+---
+- name: Pull imagem Apache
+  docker_image:
+    name: httpd:alpine
+    source: pull
+
+- name: Pull imagem NGINX
+  docker_image:
+    name: nginx:alpine
+    source: pull
+
+- name: Copy Dockerfile
+  copy:
+    src: ./Dockerfile
+    dest: /root/docker/
+
+- name: Copy file proxy
+  copy:
+    src: ./proxy.conf
+    dest: /root/docker
+
+- name: Build image NGINX-PROXY
+  docker_image:
+    build:
+      path: /root/docker/
+    name: nginx-proxy
+    tag: latest
+    source: build

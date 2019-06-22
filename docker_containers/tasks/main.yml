@@ -1,0 +1,20 @@
+--- 
+- name: Create container App00
+  docker_container:
+    name: app01
+    image: httpd:alpine
+    state: started
+
+- name: Create container App01
+  docker_container:
+    name: app02
+    image: nginx:alpine
+    state: started
+
+- name: Create container NGINX-PROXY
+  docker_container:
+    name: nginx-proxy
+    image: nginx-proxy:latest
+    state: stopped
+    ports:
+     - "80:80"

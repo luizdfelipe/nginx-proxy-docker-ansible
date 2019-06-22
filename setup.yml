@@ -1,0 +1,9 @@
+---
+- name: Setup Inicial
+  hosts: all
+
+  roles:
+    - docker_install
+    - docker_images
+    - docker_containers
+    - docker_network
